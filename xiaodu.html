@@ -8,7 +8,7 @@
         <input type="text" id="node-input-token" placeholder="Bearer Token">
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> name</label>
+        <label for="node-input-name"><i class="icon-tag"></i> 节点名称</label>
         <input type="text" id="node-input-name">
     </div>
     <div class="form-row">
@@ -19,7 +19,8 @@
 <script type="text/javascript">
     RED.nodes.registerType('xiaodu', {  // 节点的类型必须和上面注册的类型匹配 RED.nodes.registerType
         category: '小度命令',   // 节点调色板的类别
-        color: '#a6bbcf',       // 使用的背景颜色
+        color: '#C0DEED',       // 使用的背景颜色
+        icon: "font-awesome/fa-microphone", // 要使用的图标
         defaults: {           // 节点可编辑的属性
             botId: { value: "" },
             token: { value: "" },
@@ -27,16 +28,11 @@
         },
         inputs: 1,         // 节点有多少输入  0 或者 1
         outputs: 2,       // 节点有多少输出  0 或者更多
-        icon: "file.png", // 要使用的图标
         label: function () { // 工作空间中要使用的标签
             return this.name || "xiaodu";
         }
     });
 </script>
 <script type="text/x-red" data-help-name="xiaodu">
-<p>控制小度音箱的设置</p>
-<p>1. 打开小度开发控制台里的 测试验证 - 模拟测试</p>
-<p>2. 开启浏览器调试模式，在控制台里查看请求日志</p>
-<p>3. 找到请求头里的authorization: Bearer xxxxxxxxxxxxxxxxxxxxx</p>
-<p>4. xxxxxxxxxxxxxxxxxxxxx就是要填入的token</p>
+<p>通过文字命令，控制小度音箱里的设备</p>
 </script>

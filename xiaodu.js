@@ -75,7 +75,6 @@ function xiaoduCommand(query, botId, token) {
             resolve(resArr)
         }).catch(reject)
     })
-
 }
 
 module.exports = function (RED) { // RED  可以对node-red 进行访问
@@ -84,13 +83,14 @@ module.exports = function (RED) { // RED  可以对node-red 进行访问
         RED.nodes.createNode(this, config); // 节点本身就会对调用该函数，包括节点输入的属性
         var node = this;
         node.on('input', function (msg) {
-            Promise.all(msg.payload.split(',').map(ele => xiaoduCommand(ele.trim(), config.botId, config.token))).then(() => {
+            this.status({ fill: "blue", shape: "ring", text: "正在发送命令" });
+            const queue = msg.payload.split(',').map(ele => xiaoduCommand(ele.trim(), config.botId, config.token))
+            Promise.all(queue).then((payload) => {
                 this.status({ fill: "green", shape: "ring", text: "命令发送成功" });
-                node.send([{
-                    payload: arguments
-                }, null]);
-            }).catch(() => {
+                node.send([{ payload }, null]);
+            }).catch((payload) => {
                 this.status({ fill: "red", shape: "ring", text: "命令发送失败" });
+                node.send([null, { payload }]);
             })
         });
 
