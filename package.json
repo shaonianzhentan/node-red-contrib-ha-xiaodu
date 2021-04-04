@@ -1,0 +1,23 @@
+{
+  "name": "node-red-contrib-xiaodu-command",
+  "version": "1.0.0",
+  "description": "小度控制命令",
+  "main": "xiaodu.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaonianzhentan/node-red-contrib-xiaodu-command.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaonianzhentan/node-red-contrib-xiaodu-command/issues"
+  },
+  "homepage": "https://github.com/shaonianzhentan/node-red-contrib-xiaodu-command#readme",
+  "devDependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.1"
+  }
+}
