@@ -36,7 +36,7 @@ module.exports = function (RED) { // RED  可以对node-red 进行访问
             this.status({ fill: "blue", shape: "ring", text: "正在发送命令" });
             xiaoduCommand(msg.payload.trim(), JSON.parse(config.headers)).then(() => {
                 this.status({ fill: "green", shape: "ring", text: "命令发送成功" });
-                node.send([{ payload }, null]);
+                node.send([{ payload: 'ok' }, null]);
             }).catch((payload) => {
                 this.status({ fill: "red", shape: "ring", text: "命令发送失败" });
                 node.send([null, { payload }]);

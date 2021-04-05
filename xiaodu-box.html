@@ -1,11 +1,11 @@
 <script type="text/x-red" data-template-name="xiaodu-box">
     <div class="form-row">
         <label for="node-input-headers"><i class="icon-tag"></i>请求头Headers</label>
-        <textarea id="node-input-headers" placeholder="请求头Headers"></textarea>
+        <textarea id="node-input-headers" placeholder="请求头Headers" rows="20" style="width:100%;"></textarea>
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> 节点名称</label>
-        <input type="text" id="node-input-name">
+        <input type="text" id="node-input-name" placeholder="小度音箱控制">
     </div>
     <div class="form-row">
         <label>教程:</label>
@@ -17,6 +17,7 @@
         category: '小度命令',   // 节点调色板的类别
         color: '#C0DEED',       // 使用的背景颜色
         icon: "font-awesome/fa-microphone",
+        paletteLabel: '小度音箱控制',
         defaults: {
             headers: { value: "" },
             name: { value: "" }
