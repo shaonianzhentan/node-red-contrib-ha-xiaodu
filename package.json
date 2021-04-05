@@ -5,7 +5,8 @@
   "main": "xiaodu.js",
   "node-red": {
     "nodes": {
-      "node-red-contrib-xiaodu-command": "xiaodu.js"
+      "xiaodu-command": "xiaodu.js",
+      "xiaodu-box": "xiaodu-box.js"
     }
   },
   "scripts": {
