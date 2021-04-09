@@ -1,8 +1,11 @@
 {
   "name": "node-red-contrib-xiaodu-command",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "小度控制命令",
   "main": "xiaodu.js",
+  "keywords": [
+    "node-red"
+  ],
   "node-red": {
     "nodes": {
       "xiaodu-command": "xiaodu.js",
