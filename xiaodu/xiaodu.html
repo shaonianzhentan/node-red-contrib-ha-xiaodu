@@ -4,20 +4,8 @@
         <input type="text" id="node-input-server">
     </div>
     <div class="form-row">
-        <label for="node-input-cookie"> Cookie </label>
-        <input type="text" id="node-input-cookie" placeholder="小度技能开放平台的登录Cookie" />
-    </div>
-    <div class="form-row">
-        <label for="node-input-botId"> botId </label>
-        <input type="text" id="node-input-botId" placeholder="技能ID" />
-    </div>
-    <div class="form-tips"><b>提示:</b>
-        <p>上面的信息是在小度技能开放平台获取，可同时控制多个设备</p>
-        <p>下面的信息是通过抓包小度音箱获取的，模拟语音唤醒输入</p>
-    </div>
-    <div class="form-row">
-        <label for="node-input-headers"> headers </label>
-        <input type="text" id="node-input-headers" placeholder="headers" />
+        <label for="node-input-cookie"> BDUSS </label>
+        <input type="text" id="node-input-cookie" placeholder="小度音箱Cookie" />
     </div>
 </script>
 <script type="text/javascript">
@@ -28,17 +16,12 @@
         paletteLabel: '小度音箱',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
-            cookie: { value: "", required: true },
-            botId: { value: "", required: true },
-            headers: { value: "" }
+            cookie: { value: "", required: true }
         },
         inputs: 1,
         outputs: 1,
         label: function () {
             return "小度音箱";
-        },
-        oneditprepare: function () {
-            $("#node-input-headers").typedInput({ type: "json", types: ["json"] })
         }
     });
 </script>
