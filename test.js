@@ -1,5 +1,5 @@
 const HomeAssistant = require('./HomeAssistant')
 
-const ha = new HomeAssistant()
-
-ha.xiaoduBox('现在几点')
+const BDUSS = ''
+const ha = new HomeAssistant(BDUSS, null)
+ha.getDeviceList(BDUSS).then(console.log)

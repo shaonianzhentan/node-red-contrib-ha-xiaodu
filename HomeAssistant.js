@@ -3,12 +3,13 @@ const FormData = require('form-data')
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = class {
-    constructor(node) {
+    constructor(BDUSS, node) {
+        this.BDUSS = BDUSS
         this.node = node
     }
 
     status(text) {
-        this.node.status({ fill: "green", shape: "ring", text })
+        this.node?.status({ fill: "green", shape: "ring", text })
     }
 
     // 自动发现配置
@@ -17,16 +18,16 @@ module.exports = class {
     }
 
     // 获取设备列表
-    async getDeviceList(BDUSS) {
+    async getDeviceList() {
         return await fetch('https://xiaodu.baidu.com/saiya/device/list', {
-            headers: { "cookie": `BDUSS=${BDUSS}` }
+            headers: { "cookie": `BDUSS=${this.BDUSS}` }
         }).then(res => res.json())
     }
 
     // 单命令执行
     async xiaoduBox(text, { client_id, cuid, appkey, BDUSS }) {
         const uuid = `${appkey}|O_com.baidu.duer.superapp`
-        headers = {
+        const headers = {
             "client_id": client_id,
             "dueros-device-id": cuid,
             "uuid": uuid,
