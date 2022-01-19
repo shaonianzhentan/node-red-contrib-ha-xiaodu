@@ -5,6 +5,7 @@
   "main": "xiaodu.js",
   "keywords": [
     "node-red",
+    "mqtt-bridge",
     "xiaodu"
   ],
   "node-red": {

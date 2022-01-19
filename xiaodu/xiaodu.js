@@ -1,4 +1,4 @@
-const HomeAssistant = require('../HomeAssistant')
+const Xiaodu = require('../Xiaodu')
 
 module.exports = function (RED) {
     RED.nodes.registerType('ha-xiaodu', function (config) {
@@ -6,29 +6,27 @@ module.exports = function (RED) {
         const node = this
         const { BDUSS } = config
         const server = RED.nodes.getNode(config.server);
-        if (server) {
-            server.register(this)
-            const ha = new HomeAssistant(node)
-            ha.getDeviceList(BDUSS).then(res => {
-                ha.status(res.msg)
-                // 遍历设备
-                res.data.list.forEach(device => {
-                    
+        const ha = new Xiaodu(BDUSS)
+        ha.getDeviceList(BDUSS).then(() => {
+            console.log('获取设备列表')
+            ha.device_info.forEach(device => {
+                const name = device.name
+                const type = 'button'
+                const unique_id = ha.md5(type + name)
+                const discovery_topic = `homeassistant/${type}/${unique_id}/config`
+                const command_topic = `${unique_id}/set`
+                server.publish(discovery_topic, {
+                    name: `唤醒${name}`,
+                    unique_id,
+                    command_topic: server.subscribe_topic(command_topic),
+                    device
+                })
+                server.subscribe(server.publish_topic(command_topic), payload => {
+                    if (payload.toString() === 'PRESS') {
+                        ha.send_to_server('小度小度', device.identifiers)
+                    }
                 })
             })
-            node.on('input', async function (msg) {
-                const { payload, xiaodu } = msg
-                node.status({ fill: "blue", shape: "ring", text: "发送命令" });
-                try {
-                    // 使用小度音箱
-                    if (xiaodu) {
-                        await ha.xiaoduBox(xiaodu, config.headers)
-                    }
-                    node.status({ fill: "green", shape: "ring", text: "发送成功" });
-                } catch (ex) {
-                    node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
-                }
-            })
-        }
+        })
     })
 }
