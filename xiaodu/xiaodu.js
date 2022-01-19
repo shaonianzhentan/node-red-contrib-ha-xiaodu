@@ -3,7 +3,6 @@ const Xiaodu = require('../Xiaodu')
 module.exports = function (RED) {
     RED.nodes.registerType('ha-xiaodu', function (config) {
         RED.nodes.createNode(this, config);
-        const node = this
         const { BDUSS } = config
         const server = RED.nodes.getNode(config.server);
         const ha = new Xiaodu(BDUSS)
